@@ -110,11 +110,12 @@ class Trainer:
             predv, corrv = np.array(predv), np.array(corrv).astype(np.uint8)
             for th in np.arange(0.35, 0.95, 0.05):
                 predv_ = np.where(predv >= th, 1, 0).astype(np.uint8)
-                acc = accuracy_score(predv_, corrv)
+                acc = accuracy_score(predv_.flatten(), corrv.flatten())
                 acc_list.append(acc)
                 threshold.append(th)
             indics = np.argmax(np.array(acc_list))
             print(f"fold: {fold+1} | best score: {acc_list[indics]} | best threshold: {threshold[indics]}")
+            del predv, corrv 
         return threshold[indics]
                 
                 
