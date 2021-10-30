@@ -31,7 +31,7 @@ class Predictor:
             for pp in p:
                 submission_list.append((id, self.rle_encoding(pp.astype(int))))
         df = pd.DataFrame(submission_list, columns=["id", "predicted"])
-        df.to_csv("submission.csv", index=False)
+        df.to_csv("/kaggle/working/submission.csv", index=False)
         
     def fit(self):
         '''
